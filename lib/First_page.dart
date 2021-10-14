@@ -21,7 +21,7 @@ class _InputPageState extends State<InputPage> {
   Color femaleIconColor = inactiveIcon;
   Color maleIconColor = inactiveIcon;
   void colourChange(int gender) {
-    if (gender == 0) {
+    if (gender == 1) {
       if (maleBoxColour == inactiveColour) {
         maleBoxColour = activeColour;
         femaleBoxColour = inactiveColour;
@@ -31,7 +31,7 @@ class _InputPageState extends State<InputPage> {
         maleBoxColour = inactiveColour;
       }
     }
-    if (gender == 1) {
+    if (gender == 2) {
       if (femaleBoxColour == inactiveColour) {
         femaleBoxColour = activeColour;
         maleBoxColour = inactiveColour;
@@ -65,7 +65,7 @@ class _InputPageState extends State<InputPage> {
                 child: GestureDetector(
                   onTap: () {
                     setState(() {
-                      colourChange(0);
+                      colourChange(1);
                     });
                   },
                   child: Box(
@@ -83,7 +83,7 @@ class _InputPageState extends State<InputPage> {
                   onTap: () {
                     print("female");
                     setState(() {
-                      colourChange(1);
+                      colourChange(2);
                     });
                   },
                   child: Box(
