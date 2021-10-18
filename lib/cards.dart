@@ -7,11 +7,13 @@ class Box extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: cardChild,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12.0), color: colour),
-      margin: EdgeInsets.all(20.0),
+    return GestureDetector(
+      child: Container(
+        child: cardChild,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12.0), color: colour),
+        margin: EdgeInsets.all(20.0),
+      ),
     );
   }
 }

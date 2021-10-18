@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'cards.dart';
@@ -10,12 +11,18 @@ const inactiveColour = Color(0xFF181928);
 const inactiveIcon = Colors.black;
 const activeIcon = Colors.white70;
 
+enum Gender {
+  male,
+  female,
+}
+
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
 }
 
 class _InputPageState extends State<InputPage> {
+  int height = 180;
   Color maleBoxColour = inactiveColour;
   Color femaleBoxColour = inactiveColour;
   Color femaleIconColor = inactiveIcon;
@@ -57,6 +64,7 @@ class _InputPageState extends State<InputPage> {
         )),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
               child: Row(
@@ -81,7 +89,6 @@ class _InputPageState extends State<InputPage> {
               Expanded(
                 child: GestureDetector(
                   onTap: () {
-                    print("female");
                     setState(() {
                       colourChange(2);
                     });
@@ -91,7 +98,7 @@ class _InputPageState extends State<InputPage> {
                     cardChild: iconMaterial(
                       colour: femaleIconColor,
                       icon: FontAwesomeIcons.venus,
-                      gender: 'Female',
+                      gender: 'FEMALE',
                     ),
                   ),
                 ),
@@ -101,11 +108,50 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Box(
                 colour: boxColour,
-                cardChild: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
-                  margin: EdgeInsets.all(20.0),
+                cardChild: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'HEIGHT',
+                      style: TextStyle(color: Colors.grey, fontSize: 25.0),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      margin: EdgeInsets.all(20.0),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
+                      children: [
+                        Text(
+                          height.toString(),
+                          style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 50,
+                              fontWeight: FontWeight.w900),
+                        ),
+                        Text(
+                          'cm',
+                          style: TextStyle(color: Colors.grey, fontSize: 25),
+                        ),
+                      ],
+                    ),
+                    Slider(
+                      value: height.toDouble(),
+                      activeColor: Colors.lightGreenAccent,
+                      inactiveColor: Color(0xFF181928),
+                      min: 120.0,
+                      max: 250.0,
+                      onChanged: (double newValue) {
+                        setState(() {
+                          height = newValue.round();
+                        });
+                      },
+                    ),
+                  ],
                 )),
           ),
           Expanded(
