@@ -1,8 +1,11 @@
+import 'package:bmi_calculator/Button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'cards.dart';
 import 'cardContent.dart';
+import 'package:bmi_calculator/Button.dart';
+import 'calculated.dart';
 
 const bottomcontainerColour = Colors.lightGreenAccent;
 const boxColour = Color(0xFF262740);
@@ -23,10 +26,13 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   int height = 180;
+  int weight = 30;
+  int age = 18;
   Color maleBoxColour = inactiveColour;
   Color femaleBoxColour = inactiveColour;
   Color femaleIconColor = inactiveIcon;
   Color maleIconColor = inactiveIcon;
+
   void colourChange(int gender) {
     if (gender == 1) {
       if (maleBoxColour == inactiveColour) {
@@ -161,26 +167,125 @@ class _InputPageState extends State<InputPage> {
                 child: Box(
                     colour: boxColour,
                     cardChild: Column(
-                      children: [Icon(FontAwesomeIcons.male)],
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'WEIGHT',
+                            style: TextStyle(
+                              fontSize: 25.0,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: TextStyle(
+                              fontSize: 50.0,
+                              color: Colors.grey,
+                              fontWeight: FontWeight.w900),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              onpress: () {
+                                setState(() {
+                                  weight--;
+                                });
+                              },
+                              icon: FontAwesomeIcons.minus,
+                            ),
+                            SizedBox(
+                              width: 15.0,
+                            ),
+                            RoundIconButton(
+                              onpress: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                              icon: FontAwesomeIcons.plus,
+                            )
+                          ],
+                        )
+                      ],
                     )),
               ),
               Expanded(
                 child: Box(
                     colour: boxColour,
                     cardChild: Column(
-                      children: [Icon(FontAwesomeIcons.mars)],
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'AGE',
+                            style:
+                                TextStyle(fontSize: 25.0, color: Colors.grey),
+                          ),
+                        ),
+                        Text(
+                          age.toString(),
+                          style: TextStyle(
+                              fontSize: 50.0,
+                              color: Colors.grey,
+                              fontWeight: FontWeight.w900),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              onpress: () {
+                                setState(() {
+                                  age--;
+                                });
+                              },
+                              icon: FontAwesomeIcons.minus,
+                            ),
+                            SizedBox(
+                              width: 15.0,
+                            ),
+                            RoundIconButton(
+                                onpress: () {
+                                  setState(() {
+                                    age++;
+                                  });
+                                },
+                                icon: FontAwesomeIcons.plus)
+                          ],
+                        )
+                      ],
                     )),
               )
             ],
           )),
-          Container(
-            decoration: BoxDecoration(
-              color: bottomcontainerColour,
-              borderRadius: BorderRadius.circular(9.0),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => result(),
+                ),
+              );
+            },
+            child: Container(
+              alignment: Alignment.center,
+              child: Text(
+                'Calculate',
+                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25.0),
+              ),
+              decoration: BoxDecoration(
+                color: bottomcontainerColour,
+                borderRadius: BorderRadius.circular(9.0),
+              ),
+              // color: bottomcontainerColour,
+              margin: EdgeInsets.only(left: 50, top: 15, right: 50, bottom: 15),
+              height: 50,
+              width: double.infinity,
             ),
-            margin: EdgeInsets.only(left: 50, top: 15, right: 50, bottom: 15),
-            height: 50,
-            width: double.infinity,
           ),
         ],
       ),
