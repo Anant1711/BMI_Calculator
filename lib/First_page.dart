@@ -6,6 +6,7 @@ import 'cards.dart';
 import 'cardContent.dart';
 import 'package:bmi_calculator/Button.dart';
 import 'calculated.dart';
+import 'brain.dart';
 
 const bottomcontainerColour = Colors.lightGreenAccent;
 const boxColour = Color(0xFF262740);
@@ -264,10 +265,15 @@ class _InputPageState extends State<InputPage> {
           )),
           GestureDetector(
             onTap: () {
+              Brain b = Brain(height: height, weight: weight);
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => result(),
+                  builder: (context) => result(
+                    BmiResult: b.Calulate(),
+                    ResultText: b.ResultString(),
+                    FeedbackText: b.FeedbackToUser(),
+                  ),
                 ),
               );
             },

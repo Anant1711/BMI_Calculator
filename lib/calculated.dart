@@ -1,8 +1,18 @@
+import 'package:bmi_calculator/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'cards.dart';
 
 class result extends StatelessWidget {
+  result(
+      {required this.BmiResult,
+      required this.ResultText,
+      required this.FeedbackText});
+
+  final String BmiResult;
+  final String ResultText;
+  final String FeedbackText;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,21 +50,21 @@ class result extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'OverWeight',
+                    ResultText,
                     style: TextStyle(
                         color: Color(0xFF00E676),
                         fontWeight: FontWeight.bold,
-                        fontSize: 22.0),
+                        fontSize: 30.0),
                   ),
                   Text(
-                    '180.0',
+                    BmiResult,
                     style: TextStyle(
-                        fontSize: 70.0,
+                        fontSize: 75.0,
                         fontWeight: FontWeight.bold,
                         color: Color(0xFFEEEAEA)),
                   ),
                   Text(
-                    'GO and eat some JUNK Food! asdad asd ad a',
+                    FeedbackText,
                     style: TextStyle(fontSize: 22.0, color: Colors.white),
                     textAlign: TextAlign.center,
                   ),
